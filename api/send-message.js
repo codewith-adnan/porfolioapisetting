@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
   const allowedOrigins = [
-    "https://myportfolio-chi-nine-81.vercel.app/", 
+    "https://myportfolio-eight-lemon-85.vercel.app/", 
     "http://localhost:5173", 
   ];
 
@@ -16,17 +16,14 @@ export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   res.setHeader("Vary", "Origin");
 
-  // ✅ Handle preflight
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
 
-  // ✅ Only POST allowed
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Only POST requests allowed" });
   }
 
-  // ✅ Include subject now
   const { name, email, subject, message } = req.body;
 
   if (!name || !email || !message) {
@@ -34,7 +31,6 @@ export default async function handler(req, res) {
   }
 
   try {
-    // ✅ Create transporter
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -43,7 +39,6 @@ export default async function handler(req, res) {
       },
     });
 
-    // ✅ Send email
     await transporter.sendMail({
       from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
