@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
   const allowedOrigins = [
-    "https://myportfolio-eight-lemon-85.vercel.app/", 
+    "https://myportfolio-tau-mocha.vercel.app/", 
     "http://localhost:5173", 
   ];
 
